@@ -1,0 +1,53 @@
+@import "src/styles/variables";
+
+.navbar {
+  width: 100%;
+  max-width: 1440px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $navbar-color;
+
+  .brand {
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    .logo {
+      width: 21px;
+      height: 21px;
+      background: transparent;
+    }
+
+    .logotext {
+      margin-left: 10px;
+      color: $logo-text-color;
+    }
+
+  }
+
+  .rightContainer {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    .rightItem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .icon {
+        height: 24px;
+        width: 24px;
+      }
+
+      .icon-text {
+        font-size: 12px;
+        line-height: 20px;
+        color: $icon-color;
+      }
+    }
+  }
+
+}

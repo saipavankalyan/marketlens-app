@@ -8,6 +8,7 @@
   justify-content: space-between;
   align-items: center;
   background: $navbar-color;
+  margin: 0 auto;
 
   .brand {
 
@@ -24,6 +25,9 @@
     .logotext {
       margin-left: 10px;
       color: $logo-text-color;
+      font-weight: 700;
+      line-height: 22px;
+      font-family: Inter, serif;
     }
 
   }

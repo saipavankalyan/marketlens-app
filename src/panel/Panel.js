@@ -14,24 +14,11 @@ const Panel = () => (
     <div className={classes.panel}>
         {Object.entries(URL_DISPLAY_MAPPING).map(
             ([key, value]) => (
-                <NavLink className={(navData) => clsx(classes.panelItem, {[classes.activePanelItem]: navData.isActive})}  to={value}>
+                <NavLink key={key} className={(navData) => clsx(classes.panelItem, {[classes.activePanelItem]: navData.isActive})}  to={value}>
                     {key}
                 </NavLink>
             )
         )}
-
-        {/*<NavLink as={"div"} className={classes.panelItem} activeClassName={classes.activePanelItem} to={"/correlation"}>*/}
-        {/*    Correlation*/}
-        {/*</NavLink>*/}
-        {/*<NavLink as={"div"} className={classes.panelItem} activeClassName={classes.activePanelItem} to={"/roi"}>*/}
-        {/*    ROI*/}
-        {/*</NavLink>*/}
-        {/*<NavLink as={"div"} className={classes.panelItem} activeClassName={classes.activePanelItem} to={"/economy"}>*/}
-        {/*    Economy*/}
-        {/*</NavLink>*/}
-        {/*<NavLink as={"div"} className={classes.panelItem} activeClassName={classes.activePanelItem} to={"/distribution"}>*/}
-        {/*    Distribution*/}
-        {/*</NavLink>*/}
     </div>
 )
 

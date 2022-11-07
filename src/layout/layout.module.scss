@@ -3,7 +3,7 @@
 .layout {
   width: 100%;
   margin: 0 auto;
-  max-width: 1440px;
+  //max-width: 1440px;
   background: #fff;
 
   .panel {
@@ -23,7 +23,7 @@
     width: calc(100% - 225px);
     margin-left: 225px;
     background: lightgray;
-    height: 400px;
+    height: 100%;
   }
 
 }

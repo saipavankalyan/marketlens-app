@@ -1,0 +1,11 @@
+.horizontalForm {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+
+  .formElement {
+    width: 350px;
+  }
+
+}

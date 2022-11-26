@@ -6,6 +6,8 @@ import Multirangeslider from "multi-range-slider-react";
 import classes from "./form.module.scss";
 import RadioGroup from "../component/form/RadioGroup";
 import * as yup from "yup";
+import FEMultiElementSelect from "../component/form/MultiSelect";
+import RangeSlider from "../component/form/RangeSlider";
 
 const GrowthForm = ({onFormSubmit}) => {
 
@@ -27,8 +29,10 @@ const GrowthForm = ({onFormSubmit}) => {
 
     const validationSchema = yup.object(
         {
-            minYear: yup.number().required(),
-            maxYear: yup.number().required(),
+            range: yup.object({
+                minYear: yup.number().required(),
+                maxYear: yup.number().required(),
+            }),
             aggBy: yup.string().required(),
             symbol: yup.array().min(1).required()
         }
@@ -37,14 +41,17 @@ const GrowthForm = ({onFormSubmit}) => {
     // console.log(entries);
 
     const initialValue = {
-        minYear: 2004,
-        maxYear: 2005,
+        range: {
+            minYear: 2016,
+            maxYear: 2021,
+        },
         aggBy: 'MONTH',
         symbol: []
     }
 
     const handleFormSubmit = (value) => {
-        const submitValues = {...value};
+        // Spread out the range object.
+        const submitValues = {...value, ...value.range};
 
         submitValues.symbol = submitValues.symbol.map(v => v.value);
 
@@ -57,11 +64,12 @@ const GrowthForm = ({onFormSubmit}) => {
                 (formik) => {
                     return (
                         <div className={classes.horizontalForm}>
-                            <div className={classes.formElement}>
-                                <MultiSelect value={formik.values.symbol}
-                                             setValue={(newValues) => formik.setFieldValue("symbol", newValues)}
-                                             options={entriesOption}/>
-                            </div>
+                            <FEMultiElementSelect options={entriesOption} name={"symbol"}/>
+                            {/*<div className={classes.formElement}>*/}
+                            {/*    <MultiSelect value={formik.values.symbol}*/}
+                            {/*                 setValue={(newValues) => formik.setFieldValue("symbol", newValues)}*/}
+                            {/*                 options={entriesOption}/>*/}
+                            {/*</div>*/}
 
                             <RadioGroup
                                 name={'aggBy'}
@@ -71,25 +79,27 @@ const GrowthForm = ({onFormSubmit}) => {
                                 ]}
                                 />
 
-                            <Multirangeslider
-                                className={classes.formElement}
-                                min={2000}
-                                max={2022}
-                                minValue={formik.values.minValue}
-                                maxValue={formik.values.maxValue}
-                                onInput={({minValue, maxValue}) => {
-                                    formik.setFieldValue('minYear', minValue)
-                                    formik.setFieldValue('maxYear', maxValue)
-                                }}
-                                step={1}
-                                style={{
-                                    border: 'none',
-                                    boxShadow: 'none'
-                                }}
-                                label={true}
-                                ruler={false}
-                                barInnerColor={'lightblue'}
-                            />
+                            <RangeSlider minYear={2015} maxYear={2022} name={"range"} />
+
+                            {/*<Multirangeslider*/}
+                            {/*    className={classes.formElement}*/}
+                            {/*    min={2000}*/}
+                            {/*    max={2022}*/}
+                            {/*    minValue={formik.values.minValue}*/}
+                            {/*    maxValue={formik.values.maxValue}*/}
+                            {/*    onInput={({minValue, maxValue}) => {*/}
+                            {/*        formik.setFieldValue('minYear', minValue)*/}
+                            {/*        formik.setFieldValue('maxYear', maxValue)*/}
+                            {/*    }}*/}
+                            {/*    step={1}*/}
+                            {/*    style={{*/}
+                            {/*        border: 'none',*/}
+                            {/*        boxShadow: 'none'*/}
+                            {/*    }}*/}
+                            {/*    label={true}*/}
+                            {/*    ruler={false}*/}
+                            {/*    barInnerColor={'lightblue'}*/}
+                            {/*/>*/}
 
                             <button
                                 disabled={!(formik.isValid && formik.dirty)}

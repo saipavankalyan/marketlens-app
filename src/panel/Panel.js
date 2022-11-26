@@ -4,10 +4,10 @@ import clsx from "clsx";
 
 const URL_DISPLAY_MAPPING = {
     Growth: '/growth',
-    Correlation: '/correlation',
-    ROI: '/ROI',
-    Economy: '/Economy',
-    Distribution: '/Distribution'
+    Contribution: '/contribution',
+    "News Influence": '/news-influence',
+    Economy: '/economy',
+    Distribution: '/distribution'
 }
 
 const Panel = () => (

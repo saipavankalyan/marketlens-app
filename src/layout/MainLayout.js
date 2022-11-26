@@ -3,6 +3,16 @@ import Panel from "../panel/Panel";
 import {Route, Routes} from "react-router";
 import GrowthPage from "../page/GrowthPage";
 import {StaticDataContext, StaticDataProvider} from "../context/StaticDataContext";
+import Contribution from "../page/contribution/Contribution";
+import NewsInfluencePage from "../page/news/NewsInfluencePage";
+
+const PANEL_BODY  = {
+    Growth: GrowthPage,
+    Contribution: '/contribution',
+    "News Influence": '/news-influence',
+    Economy: '/economy',
+    Distribution: '/distribution'
+}
 
 const MainLayout = ({children}) => (
     <div className={classes.layout}>
@@ -12,9 +22,9 @@ const MainLayout = ({children}) => (
         <div className={classes.displayPage}>
             <StaticDataProvider>
                 <Routes>
-                    <Route path={"/growth"} element={<GrowthPage/>}>
-
-                    </Route>
+                    <Route path={"/growth"} element={<GrowthPage/>} />
+                    <Route path={"/contribution"} element={<Contribution />} />
+                    <Route path={"/news-influence"} element={<NewsInfluencePage />} />
                     {/*<Route path={"/roi"}>*/}
                     {/*    <ROIPage />*/}
                     {/*</Route>*/}

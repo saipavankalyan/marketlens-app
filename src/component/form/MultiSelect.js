@@ -1,5 +1,7 @@
 import Select from "react-select";
 import {SELECT_LABEL_COLOR_MAP} from "../../constant/constants";
+import {useField} from "formik";
+import classes from "../../form/form.module.scss";
 
 const MultiSelect = ({options, setValue, value}) => {
 
@@ -36,4 +38,16 @@ const MultiSelect = ({options, setValue, value}) => {
     )
 }
 
-export default MultiSelect;
+const FEMultiElementSelect = ({name, options}) => {
+    const [field, meta, helper] = useField(name);
+
+    return (
+        <div className={classes.formElement}>
+            <MultiSelect value={field.value}
+                         setValue={(newValues) => helper.setValue(newValues)}
+                         options={options}/>
+        </div>
+    )
+}
+
+export default FEMultiElementSelect;

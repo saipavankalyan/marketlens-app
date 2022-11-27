@@ -5,6 +5,8 @@ import GrowthPage from "../page/GrowthPage";
 import {StaticDataContext, StaticDataProvider} from "../context/StaticDataContext";
 import Contribution from "../page/contribution/Contribution";
 import NewsInfluencePage from "../page/news/NewsInfluencePage";
+import EconInfluencePage from "../page/econinfluece/EconInfluencePage";
+import TupleCountsPage from "../page/TupleCounts/TupleCounts";
 
 const PANEL_BODY  = {
     Growth: GrowthPage,
@@ -25,6 +27,8 @@ const MainLayout = ({children}) => (
                     <Route path={"/growth"} element={<GrowthPage/>} />
                     <Route path={"/contribution"} element={<Contribution />} />
                     <Route path={"/news-influence"} element={<NewsInfluencePage />} />
+                    <Route path={"/econ-influence"} element={<EconInfluencePage />} />
+                    <Route path={"/tuple-counts"} element={<TupleCountsPage />} />
                     {/*<Route path={"/roi"}>*/}
                     {/*    <ROIPage />*/}
                     {/*</Route>*/}

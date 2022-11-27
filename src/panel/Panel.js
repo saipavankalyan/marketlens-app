@@ -6,8 +6,9 @@ const URL_DISPLAY_MAPPING = {
     Growth: '/growth',
     Contribution: '/contribution',
     "News Influence": '/news-influence',
-    Economy: '/economy',
-    Distribution: '/distribution'
+    "Econ Influence": '/econ-influence',
+    Distribution: '/distribution',
+    "Tuple Counts": '/tuple-counts'
 }
 
 const Panel = () => (

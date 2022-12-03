@@ -2,10 +2,13 @@ import classes from "../pagestyles.module.scss";
 import {useState} from "react";
 import Skeleton from "react-loading-skeleton";
 import {rePivotGraphData} from "../../service/GraphDataService";
-import {Area, CartesianGrid, Legend, Line, AreaChart, LineChart, Tooltip, XAxis, YAxis} from "recharts";
+import {Area, AreaChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis} from "recharts";
 import {getContributionDetails} from "../../service/contribution/ContributionService";
 import ContributionForm from "../../form/ContributionForm";
 import _ from "lodash";
+import {XLabel, YLabel} from "../../component/graph/Labels";
+import {SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
+import {GraphXAxis, GraphYAxis} from "../../component/graph/Axis";
 
 const ContributionPage = () => {
     const [loading, setLoading] = useState(false);
@@ -32,19 +35,27 @@ const ContributionPage = () => {
 
     const colors = ['blue', 'green', 'red', 'orange', 'violet']
 
+    const formatBillions = (value) => {
+
+        return `${(value / 1_000_000_000).toFixed(3)} B`
+    }
+
+    const tickFormatter = (value) => {
+        return `${value / 1_000_000_000}`;
+    }
+
     return (
         <div>
             <ContributionForm onFormSubmit={handleFormSubmit}/>
             {loading && <Skeleton duration={0.1} height={500}/>}
             {!loading && initiated && (
                 <div className={classes.graphContainer}>
-                    <AreaChart width={800} height={500} data={data}
-                               margin={{top: 20, right: 20, left: 80, bottom: 20}}>
+                    <AreaChart data={data} {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
                         <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey={'xAxis'}/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend/>
+                        <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
+                        <YAxis tickFormatter={tickFormatter} label={YLABEL_PROPERTIES} />
+                        <Tooltip formatter={formatBillions} />
+                        <Legend align={"right"} verticalAlign={"top"} layout={"vertical"}/>
                         {symbols.map((symbol, _idx) => <Area
                             dataKey={symbol}
                             fillOpacity={0.25}

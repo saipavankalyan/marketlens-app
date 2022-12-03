@@ -2,39 +2,36 @@ import classes from "../pagestyles.module.scss";
 import {useState} from "react";
 import Skeleton from "react-loading-skeleton";
 import {rePivotGraphData} from "../../service/GraphDataService";
-import {Area, CartesianGrid, ComposedChart, Legend, Line, Tooltip, XAxis, YAxis} from "recharts";
+import {CartesianGrid, ComposedChart, Legend, Line, Tooltip, XAxis, YAxis} from "recharts";
 import _ from "lodash";
-import EconInfluenceForm from "../../form/EconInfluenceForm";
-import {getEconInfluenceData} from "../../service/EconInfluence/EconInfluece";
-import {XLabel, YLabel} from "../../component/graph/Labels";
-import {XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
+import {SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
+import {getSectorVarianceData} from "../../service/variance/VarianceGrowthSevice";
+import SectorVarianceForm from "../../form/SectorVarianceForm";
 
-const EconInfluencePage = () => {
+const SectorVariancePage = () => {
     const [loading, setLoading] = useState(false);
     const [initiated, setInitiated] = useState(false);
-    const [data, setData] = useState([]);
+    const [growthData, setGrowthData] = useState([]);
+    const [stdDevData, setStdDevData] = useState([]);
     const [sectorSymbols, setSectorSymbols] = useState([]);
-    const [indicatorSymbols, setIndicatorSymbols] = useState([]);
 
     const handleFormSubmit = async (formData) => {
         setLoading(true);
         console.log(`Passing request with ${JSON.stringify(formData)}`);
-        const econInfluenceData = await getEconInfluenceData(formData);
+        const sectorVarianceData = await getSectorVarianceData(formData);
 
-        const data = _.groupBy(econInfluenceData, ({type}) => type);
+        console.log(sectorVarianceData);
 
-        console.log("data", data);
 
-        const indicatorSymbols = Object.keys(_.groupBy(data['ECON_IND'], ({symbol}) => symbol));
-        const sectorSymbols = Object.keys(_.groupBy(data['SECTOR'], ({symbol}) => symbol));
+        const sectorSymbols = Object.keys(_.groupBy(sectorVarianceData, ({sector}) => sector));
 
         setSectorSymbols(sectorSymbols);
-        setIndicatorSymbols(indicatorSymbols);
 
-        const perfectedData = rePivotGraphData(econInfluenceData, 'symbol', 'value', (datum) => `${datum.year} - ${datum.subYear}`);
-        // const sectorPerfectedData = rePivotGraphData(data['SECTOR'], 'sector', 'value', (datum) => `${datum.year} - ${datum.subYear}`);
+        const perfectedGrowthData = rePivotGraphData(sectorVarianceData, 'sector', 'value', (datum) => `${datum.year} - ${datum.subyear}`);
+        const perfectedStdDevData = rePivotGraphData(sectorVarianceData, "sector", "stdDev", (datum) => `${datum.year} - ${datum.subyear}`);
 
-        setData(perfectedData);
+        setGrowthData(perfectedGrowthData);
+        setStdDevData(perfectedStdDevData);
         setLoading(false);
         setInitiated(true);
     }
@@ -46,12 +43,11 @@ const EconInfluencePage = () => {
 
     return (
         <div>
-            <EconInfluenceForm onFormSubmit={handleFormSubmit}/>
+            <SectorVarianceForm onFormSubmit={handleFormSubmit}/>
             {loading && <Skeleton duration={0.1} height={500}/>}
             {!loading && initiated && (
                 <div className={classes.graphContainer}>
-                    <ComposedChart width={1200} height={500} data={data}
-                               margin={{top: 20, right: 20, left: 80, bottom: 20}}>
+                    <ComposedChart {...SINGLE_GRAPH_DISPLAY_PROPERTIES} data={growthData}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
                         <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: 'Growth as percentage'}} />
@@ -66,22 +62,28 @@ const EconInfluencePage = () => {
                                 />
                             )
                         }
+                    </ComposedChart>
+                    <ComposedChart {...SINGLE_GRAPH_DISPLAY_PROPERTIES} data={stdDevData}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
+                        <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: 'Standard Deviation of Stock Rate'}} />
+                        <Tooltip formatter={toolTipFormatter}/>
+                        <Legend wrapperStyle={{paddingLeft: "10px"}} verticalAlign={"top"}  align={"right"} layout={"vertical"}/>
                         {
-                            indicatorSymbols.map(
-                                (symbol, _idx) => <Area
+                            sectorSymbols.map(
+                                (symbol, _idx) => <Line
                                     dataKey={symbol}
-                                    fillOpacity={0.25}
-                                    fill={colors[_idx % colors.length]}
                                     stroke={colors[_idx % colors.length]}
                                     type={'monotone'}
-                                    />
+                                />
                             )
                         }
                     </ComposedChart>
                 </div>
+
             )}
         </div>
     )
 }
 
-export default EconInfluencePage;
+export default SectorVariancePage;

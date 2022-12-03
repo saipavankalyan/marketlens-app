@@ -5,6 +5,7 @@ import getGrowthDetails from "../service/GrowthService";
 import Skeleton from "react-loading-skeleton";
 import {rePivotGraphData} from "../service/GraphDataService";
 import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "recharts";
+import {SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../constant/constants";
 
 const GrowthPage = () => {
     const [loading, setLoading] = useState(false);
@@ -29,20 +30,24 @@ const GrowthPage = () => {
 
     const colors = ['blue', 'green', 'red', 'orange', 'violet']
 
+    const tooltipFormatter = (value) => `${value.toFixed(2)} %`;
+    const tickFormatter = (value) => `${value} %`;
+
     return (
         <div>
             <GrowthForm onFormSubmit={handleFormSubmit}/>
             {loading && <Skeleton duration={0.1} height={500}/>}
             {!loading && initiated && (
                 <div className={classes.graphContainer}>
-                    <LineChart width={800} height={500} data={data}
-                               margin={{top: 20, right: 20, left: 20, bottom: 20}}>
+                    <LineChart data={data} {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
                         <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey={'xAxis'}/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend/>
-                        {symbols.map((symbol, _idx) => <Line dataKey={symbol} stroke={colors[_idx]} type={'monotone'}/>)}
+                        <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'}/>
+                        <YAxis label={{...YLABEL_PROPERTIES, value: 'Incremental Growth of Growth Rate'}}
+                               tickFormatter={tickFormatter}/>
+                        <Tooltip formatter={tooltipFormatter}/>
+                        <Legend layout={"vertical"} align={"right"} verticalAlign={"top"}/>
+                        {symbols.map((symbol, _idx) => <Line dataKey={symbol} stroke={colors[_idx]}
+                                                             type={'monotone'}/>)}
                     </LineChart>
                 </div>
             )}

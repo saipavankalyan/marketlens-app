@@ -7,6 +7,7 @@ import Contribution from "../page/contribution/Contribution";
 import NewsInfluencePage from "../page/news/NewsInfluencePage";
 import EconInfluencePage from "../page/econinfluece/EconInfluencePage";
 import TupleCountsPage from "../page/TupleCounts/TupleCounts";
+import SectorVariancePage from "../page/variance/SectorVariancePage";
 
 const PANEL_BODY  = {
     Growth: GrowthPage,
@@ -28,6 +29,7 @@ const MainLayout = ({children}) => (
                     <Route path={"/contribution"} element={<Contribution />} />
                     <Route path={"/news-influence"} element={<NewsInfluencePage />} />
                     <Route path={"/econ-influence"} element={<EconInfluencePage />} />
+                    <Route path={"/sector-variance"} element={<SectorVariancePage />} />
                     <Route path={"/tuple-counts"} element={<TupleCountsPage />} />
                     {/*<Route path={"/roi"}>*/}
                     {/*    <ROIPage />*/}

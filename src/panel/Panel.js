@@ -7,7 +7,7 @@ const URL_DISPLAY_MAPPING = {
     Contribution: '/contribution',
     "News Influence": '/news-influence',
     "Econ Influence": '/econ-influence',
-    Distribution: '/distribution',
+    "Sector Variance": '/sector-variance',
     "Tuple Counts": '/tuple-counts'
 }
 

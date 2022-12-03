@@ -6,6 +6,7 @@ import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "rec
 import _ from "lodash";
 import {getNewsInfluenceDetails} from "../../service/newsInflluence/NewsInfluenceService";
 import NewsInfluenceForm from "../../form/NewsInfluenceForm";
+import {SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
 
 const NewsInfluencePage = () => {
     const [loading, setLoading] = useState(false);
@@ -32,19 +33,27 @@ const NewsInfluencePage = () => {
 
     const colors = ['blue', 'green', 'red', 'orange', 'violet']
 
+    const tooltipFormatter = (value) => {
+        return `${value.toFixed(2)} %`;
+    }
+
+    const yTickFormatter = (value) => {
+        return `${parseInt(value)} %`;
+    }
+
     return (
         <div>
             <NewsInfluenceForm onFormSubmit={handleFormSubmit}/>
             {loading && <Skeleton duration={0.1} height={500}/>}
             {!loading && initiated && (
                 <div className={classes.graphContainer}>
-                    <LineChart width={800} height={500} data={data}
-                               margin={{top: 20, right: 20, left: 80, bottom: 20}}>
+                    <LineChart data={data}
+                               {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
                         <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey={'xAxis'}/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend/>
+                        <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'}/>
+                        <YAxis tickFormatter={yTickFormatter} label={{...YLABEL_PROPERTIES, value: 'Growth %'}}/>
+                        <Tooltip formatter={tooltipFormatter}/>
+                        <Legend layout={"vertical"} verticalAlign={"top"} align={"right"}/>
                         {symbols.map((symbol, _idx) => <Line
                             dataKey={symbol}
                             stroke={colors[_idx % colors.length]}

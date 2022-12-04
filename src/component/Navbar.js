@@ -1,10 +1,11 @@
 import classes from "./navbar.module.scss";
+import logo from "../assets/logo.svg";
 
 const Navbar = ({}) => (
     <div className={classes.navbar}>
         <div className={classes.brand}>
-            <img src={''} className={classes.logo}/>
-            <p className={classes.logotext}>Marketlens</p>
+            <img src={logo} className={classes.logo}/>
+            <p className={classes.logotext}>MarketLens</p>
         </div>
         {/*<div className={classes.rightContainer}>*/}
         {/*    <div className={classes.rightItem}>*/}

@@ -4,7 +4,7 @@ import Skeleton from "react-loading-skeleton";
 import {rePivotGraphData} from "../../service/GraphDataService";
 import {CartesianGrid, ComposedChart, Legend, Line, Tooltip, XAxis, YAxis} from "recharts";
 import _ from "lodash";
-import {SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
+import {COLORS, SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
 import {getSectorVarianceData} from "../../service/variance/VarianceGrowthSevice";
 import SectorVarianceForm from "../../form/SectorVarianceForm";
 
@@ -36,7 +36,7 @@ const SectorVariancePage = () => {
         setInitiated(true);
     }
 
-    const colors = ['blue', 'green', 'red', 'orange', 'violet']
+    const colors = COLORS;
 
     const toolTipFormatter = (value) => `${value.toFixed(2)} %`;
     const tickFormatter = (value) => `${value} %`;
@@ -66,7 +66,7 @@ const SectorVariancePage = () => {
                     <ComposedChart {...SINGLE_GRAPH_DISPLAY_PROPERTIES} data={stdDevData}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
-                        <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: 'Standard Deviation of Stock Rate'}} />
+                        <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: 'Standard Deviation', dx: -42}} />
                         <Tooltip formatter={toolTipFormatter}/>
                         <Legend wrapperStyle={{paddingLeft: "10px"}} verticalAlign={"top"}  align={"right"} layout={"vertical"}/>
                         {

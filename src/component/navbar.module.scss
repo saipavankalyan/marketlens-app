@@ -11,7 +11,7 @@
   margin: 0 auto;
 
   .brand {
-
+    margin-left: 20px;
     display: flex;
     justify-content: left;
     align-items: center;
@@ -23,11 +23,13 @@
     }
 
     .logotext {
+      margin-bottom: 0;
       margin-left: 10px;
       color: $logo-text-color;
       font-weight: 700;
       line-height: 22px;
       font-family: Inter, serif;
+      font-size: 20px;
     }
 
   }

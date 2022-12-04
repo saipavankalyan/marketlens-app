@@ -7,7 +7,7 @@ import _ from "lodash";
 import EconInfluenceForm from "../../form/EconInfluenceForm";
 import {getEconInfluenceData} from "../../service/EconInfluence/EconInfluece";
 import {XLabel, YLabel} from "../../component/graph/Labels";
-import {XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
+import {COLORS, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
 
 const EconInfluencePage = () => {
     const [loading, setLoading] = useState(false);
@@ -39,7 +39,8 @@ const EconInfluencePage = () => {
         setInitiated(true);
     }
 
-    const colors = ['blue', 'green', 'red', 'orange', 'violet']
+    const colors = COLORS;
+    const colorIndex = 0;
 
     const toolTipFormatter = (value) => `${value.toFixed(2)} %`;
     const tickFormatter = (value) => `${value} %`;
@@ -71,8 +72,8 @@ const EconInfluencePage = () => {
                                 (symbol, _idx) => <Area
                                     dataKey={symbol}
                                     fillOpacity={0.25}
-                                    fill={colors[_idx % colors.length]}
-                                    stroke={colors[_idx % colors.length]}
+                                    fill={colors[(sectorSymbols.length + _idx) % colors.length]}
+                                    stroke={colors[(sectorSymbols.length + _idx) % colors.length]}
                                     type={'monotone'}
                                     />
                             )

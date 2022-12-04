@@ -15,3 +15,5 @@ export const SINGLE_GRAPH_DISPLAY_PROPERTIES = {
 
 export const XLABEL_PROPERTIES = {value: "Time", angle: 0, position: "outsideCenter", dy: 20}
 export const YLABEL_PROPERTIES = {value: "Cumulative M. Cap", angle: -90, position: "outsideCenter", dx: -35}
+
+export const COLORS = ['red', 'green', 'blue', 'orange', 'brown', 'pink', 'yellow', 'purple', 'cyan', 'black']

@@ -5,6 +5,7 @@ import Navbar from "./component/Navbar";
 import MainLayout from "./layout/MainLayout";
 import {BrowserRouter} from "react-router-dom";
 import {QueryClient, QueryClientProvider} from "react-query";
+import useDocumentTitle from "./hooks/useDocumentTitle";
 
 const queryClient = new QueryClient(
     {
@@ -22,6 +23,8 @@ const queryClient = new QueryClient(
 );
 
 function App() {
+    useDocumentTitle("MarketLens");
+
     return (
         <div className="App">
             <BrowserRouter>

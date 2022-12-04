@@ -7,7 +7,7 @@ import {getContributionDetails} from "../../service/contribution/ContributionSer
 import ContributionForm from "../../form/ContributionForm";
 import _ from "lodash";
 import {XLabel, YLabel} from "../../component/graph/Labels";
-import {SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
+import {COLORS, SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
 import {GraphXAxis, GraphYAxis} from "../../component/graph/Axis";
 
 const ContributionPage = () => {
@@ -33,7 +33,8 @@ const ContributionPage = () => {
         setInitiated(true);
     }
 
-    const colors = ['blue', 'green', 'red', 'orange', 'violet']
+    // const colors = ['blue', 'green', 'red', 'orange', 'violet']
+    const colors = COLORS;
 
     const formatBillions = (value) => {
 
@@ -53,7 +54,7 @@ const ContributionPage = () => {
                     <AreaChart data={data} {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
-                        <YAxis tickFormatter={tickFormatter} label={YLABEL_PROPERTIES} />
+                        <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: "Cumulative M. Cap in Billions"}} />
                         <Tooltip formatter={formatBillions} />
                         <Legend align={"right"} verticalAlign={"top"} layout={"vertical"}/>
                         {symbols.map((symbol, _idx) => <Area

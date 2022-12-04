@@ -35,7 +35,7 @@ const SectorVarianceForm = ({onFormSubmit}) => {
         aggBy: 'MONTH'
     }
 
-    const sectorOptions = [...sectors,  "CRYPTO_CURRENCY"].map((sector) => ({label: sector, value: sector}));;
+    const sectorOptions = [...stockIndices,  "CRYPTO_CURRENCY"].map((sector) => ({label: sector, value: sector}));;
 
     const aggBys = [
         {
@@ -67,7 +67,7 @@ const SectorVarianceForm = ({onFormSubmit}) => {
                         <div className={classes.horizontalForm}>
 
                             <DropDownMultiSelect name={"sectors"}
-                                                 placeholder={"Sector / Indices"}
+                                                 placeholder={"Indices / Crypto"}
                                                  options={sectorOptions}
                             />
 

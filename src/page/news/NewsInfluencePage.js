@@ -6,7 +6,7 @@ import {CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis} from "rec
 import _ from "lodash";
 import {getNewsInfluenceDetails} from "../../service/newsInflluence/NewsInfluenceService";
 import NewsInfluenceForm from "../../form/NewsInfluenceForm";
-import {SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
+import {COLORS, SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
 
 const NewsInfluencePage = () => {
     const [loading, setLoading] = useState(false);
@@ -31,7 +31,7 @@ const NewsInfluencePage = () => {
         setInitiated(true);
     }
 
-    const colors = ['blue', 'green', 'red', 'orange', 'violet']
+    const colors = COLORS;
 
     const tooltipFormatter = (value) => {
         return `${value.toFixed(2)} %`;

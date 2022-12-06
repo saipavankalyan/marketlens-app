@@ -5,15 +5,6 @@ import classes from "../../form/form.module.scss";
 
 const MultiSelect = ({options, setValue, value}) => {
 
-    const getColor = (value) => {
-        if(value) {
-            const valueType = value.split(':')[0];
-            return SELECT_LABEL_COLOR_MAP[valueType]
-        } else {
-            return SELECT_LABEL_COLOR_MAP['stocks']
-        }
-    }
-
     return (
         <Select
             closeMenuOnSelect={true}
@@ -23,7 +14,7 @@ const MultiSelect = ({options, setValue, value}) => {
                         {
                             ...base,
                             // //TODO Change the color according to type of selected input.
-                            backgroundColor: getColor(rest.data.value),
+                            backgroundColor: '#39A0CA',
                             // color: 'white',
                         }
                     )

@@ -10,3 +10,7 @@ export const getNewsInfluenceDetails = async (event) => {
     return response.data.data;
 }
 
+export const getNewsEventLinks = async (event) => {
+    const response = await Request.get('news/links?' + new URLSearchParams({event}).toString());
+    return response.data.data;
+}

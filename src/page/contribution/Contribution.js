@@ -52,7 +52,7 @@ const ContributionPage = () => {
             {!loading && initiated && (
                 <div className={classes.graphContainer}>
                     <AreaChart data={data} {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
-                        <CartesianGrid strokeDasharray="3 3"/>
+                        <CartesianGrid strokeDasharray="3 3" />
                         <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
                         <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: "Cumulative M. Cap in Billions"}} />
                         <Tooltip formatter={formatBillions} />

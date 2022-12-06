@@ -7,6 +7,7 @@ import _ from "lodash";
 import {COLORS, SINGLE_GRAPH_DISPLAY_PROPERTIES, XLABEL_PROPERTIES, YLABEL_PROPERTIES} from "../../constant/constants";
 import {getSectorVarianceData} from "../../service/variance/VarianceGrowthSevice";
 import SectorVarianceForm from "../../form/SectorVarianceForm";
+import {value} from "lodash/seq";
 
 const SectorVariancePage = () => {
     const [loading, setLoading] = useState(false);
@@ -40,6 +41,8 @@ const SectorVariancePage = () => {
 
     const toolTipFormatter = (value) => `${value.toFixed(2)} %`;
     const tickFormatter = (value) => `${value} %`;
+    const stdTickFormatter = (value) => `${value}`;
+    const stdToolTipFormatter = (value) => `${value.toFixed(2)}`;
 
     return (
         <div>
@@ -67,8 +70,8 @@ const SectorVariancePage = () => {
                     <ComposedChart {...SINGLE_GRAPH_DISPLAY_PROPERTIES} data={stdDevData}>
                         <CartesianGrid strokeDasharray="3 3" stroke={"#9e9e9e"}/>
                         <XAxis strokeWidth={2} fontWeight={'bold'} label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
-                        <YAxis strokeWidth={2} fontWeight={'bold'} tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: 'Standard Deviation', dx: -48}} />
-                        <Tooltip formatter={toolTipFormatter}/>
+                        <YAxis strokeWidth={2} fontWeight={'bold'} tickFormatter={stdTickFormatter} label={{...YLABEL_PROPERTIES, value: 'Standard Deviation', dx: -48}} />
+                        <Tooltip formatter={stdToolTipFormatter}/>
                         <Legend wrapperStyle={{paddingLeft: "10px"}} verticalAlign={"top"}  align={"right"} layout={"vertical"}/>
                         {
                             sectorSymbols.map(

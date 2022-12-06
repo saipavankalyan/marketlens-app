@@ -42,7 +42,7 @@ const GrowthPage = () => {
                     <LineChart data={data} {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
                         <CartesianGrid strokeDasharray="3 3" stroke={"#9e9e9e"}/>
                         <XAxis strokeWidth={2} fontWeight={'bold'} label={XLABEL_PROPERTIES} dataKey={'xAxis'}/>
-                        <YAxis strokeWidth={2} fontWeight={'bold'} label={{...YLABEL_PROPERTIES, value: 'Incremental Growth of Growth Rate'}}
+                        <YAxis strokeWidth={2} fontWeight={'bold'} label={{...YLABEL_PROPERTIES, value: 'Deviation'}}
                                tickFormatter={tickFormatter}/>
                         <Tooltip formatter={tooltipFormatter}/>
                         <Legend layout={"vertical"} align={"right"} verticalAlign={"top"}/>

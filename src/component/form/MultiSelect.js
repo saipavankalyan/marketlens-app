@@ -14,7 +14,9 @@ const MultiSelect = ({options, setValue, value}) => {
                         {
                             ...base,
                             // //TODO Change the color according to type of selected input.
-                            backgroundColor: '#39A0CA',
+                            // backgroundColor: '#81d4fa',
+                            fontWeight: "bold"
+                            // color: '#003aff'
                             // color: 'white',
                         }
                     )

@@ -5,6 +5,7 @@ import {useContext} from "react";
 import {StaticDataContext} from "../context/StaticDataContext";
 import DropDownMultiSelect from "../component/form/DropdownMultiselect";
 import RangeSlider from "../component/form/RangeSlider";
+import SubmitButton from "../component/form/SubmitButton";
 
 const NewsInfluenceForm = ({onFormSubmit}) => {
 
@@ -64,10 +65,7 @@ const NewsInfluenceForm = ({onFormSubmit}) => {
 
                             <RangeSlider name={"range"} minYear={2016} maxYear={2022} />
 
-                            <button
-                                disabled={!(formik.isValid && formik.dirty)}
-                                type={"submit"}
-                                onClick={formik.handleSubmit}>Submit</button>
+                            <SubmitButton formik={formik} />
                         </div>
                     )
                 }

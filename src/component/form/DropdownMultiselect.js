@@ -14,6 +14,20 @@ const MultiSelect = ({options, setValue, value, placeholder}) => {
             placeholder={placeholder}
             value={value}
             isSearchable={false}
+            styles={{
+                multiValueLabel: (base, rest) => {
+                    return (
+                        {
+                            ...base,
+                            // //TODO Change the color according to type of selected input.
+                            // backgroundColor: '#81d4fa',
+                            fontWeight: "bold"
+                            // color: '#003aff'
+                            // color: 'white',
+                        }
+                    )
+                },
+            }}
         />
     )
 }

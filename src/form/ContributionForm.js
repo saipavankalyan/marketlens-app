@@ -6,6 +6,7 @@ import * as yup from "yup";
 import RangeSlider from "../component/form/RangeSlider";
 import DropDownSelect from "../component/form/DropdownSelect";
 import {VALID_TOP_N} from "../constant/constants"
+import SubmitButton from "../component/form/SubmitButton";
 
 const ContributionForm = ({onFormSubmit}) => {
 
@@ -69,10 +70,7 @@ const ContributionForm = ({onFormSubmit}) => {
                             <DropDownSelect name={"n"} options={top_n_options} />
                             <RangeSlider minYear={2015} maxYear={2022} name={"range"} />
 
-                            <button
-                                disabled={!(formik.isValid && formik.dirty)}
-                                type={"submit"}
-                                onClick={formik.handleSubmit}>Submit</button>
+                            <SubmitButton formik={formik} />
                         </div>
                     )
                 }

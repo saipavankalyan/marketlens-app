@@ -1,12 +1,18 @@
 .tupleCountsContaint {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   ul {
     li {
       text-align: left;
     }
+  }
+
+  table {
+    margin: 20px auto;
+
+    th, td {
+      border: 1px solid black;
+    }
+
   }
 
 }

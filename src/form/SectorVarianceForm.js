@@ -6,6 +6,7 @@ import {StaticDataContext} from "../context/StaticDataContext";
 import DropDownMultiSelect from "../component/form/DropdownMultiselect";
 import RangeSlider from "../component/form/RangeSlider";
 import DropDownSelect from "../component/form/DropdownSelect";
+import SubmitButton from "../component/form/SubmitButton";
 
 const SectorVarianceForm = ({onFormSubmit}) => {
 
@@ -75,10 +76,7 @@ const SectorVarianceForm = ({onFormSubmit}) => {
 
                             <RangeSlider name={"range"} minYear={2016} maxYear={2022} />
 
-                            <button
-                                disabled={!(formik.isValid && formik.dirty)}
-                                type={"submit"}
-                                onClick={formik.handleSubmit}>Submit</button>
+                            <SubmitButton formik={formik} />
                         </div>
                     )
                 }

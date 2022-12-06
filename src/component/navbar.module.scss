@@ -9,6 +9,8 @@
   align-items: center;
   background: $navbar-color;
   margin: 0 auto;
+  position: fixed;
+  z-index: 100;
 
   .brand {
     margin-left: 20px;
@@ -17,8 +19,8 @@
     align-items: center;
 
     .logo {
-      width: 21px;
-      height: 21px;
+      width: 30px;
+      height: 30px;
       background: transparent;
     }
 
@@ -29,7 +31,7 @@
       font-weight: 700;
       line-height: 22px;
       font-family: Inter, serif;
-      font-size: 20px;
+      font-size: 24px;
     }
 
   }

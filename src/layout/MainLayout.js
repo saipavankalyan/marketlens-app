@@ -29,7 +29,7 @@ const MainLayout = ({children}) => (
                     <Route path={"/contribution"} element={<Contribution />} />
                     <Route path={"/news-influence"} element={<NewsInfluencePage />} />
                     <Route path={"/econ-influence"} element={<EconInfluencePage />} />
-                    <Route path={"/sector-variance"} element={<SectorVariancePage />} />
+                    <Route path={"/risk-reward"} element={<SectorVariancePage />} />
                     <Route path={"/tuple-counts"} element={<TupleCountsPage />} />
                     {/*<Route path={"/roi"}>*/}
                     {/*    <ROIPage />*/}

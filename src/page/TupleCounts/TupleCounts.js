@@ -11,15 +11,22 @@ const TupleCountsPage = () => {
 
     return (
         <div className={classes.tupleCountsContaint}>
-            <ul>
+            <table>
+                <tr>
+                    <th>S. No</th>
+                    <th>Table Name</th>
+                    <th>Tuple Counts</th>
+                </tr>
             {
                 Object.keys(data).map((tableName, _idx) =>
-                    <li key={_idx}>
-                        {tableName} - {data[tableName]}
-                    </li>
+                    <tr key={_idx}>
+                        <td>{_idx + 1}</td>
+                        <td>{tableName}</td>
+                        <td>{data[tableName]}</td>
+                    </tr>
                 )
             }
-            </ul>
+            </table>
         </div>
     )
 

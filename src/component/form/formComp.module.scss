@@ -5,6 +5,12 @@
   align-items: start;
   justify-content: start;
 
+  .radioOutput {
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+  }
+
   .radioGroupLabel {
     font-weight: 600;
     color: black;

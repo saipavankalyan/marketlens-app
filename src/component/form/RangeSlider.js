@@ -23,7 +23,7 @@ const RangeSlider = ({name, minYear, maxYear}) => {
             }}
             label={true}
             ruler={false}
-            barInnerColor={'lightblue'}
+            barInnerColor={'#007aff'}
         />
     )
 

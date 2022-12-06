@@ -8,6 +8,7 @@ import RadioGroup from "../component/form/RadioGroup";
 import * as yup from "yup";
 import FEMultiElementSelect from "../component/form/MultiSelect";
 import RangeSlider from "../component/form/RangeSlider";
+import SubmitButton from "../component/form/SubmitButton";
 
 const GrowthForm = ({onFormSubmit}) => {
 
@@ -101,10 +102,7 @@ const GrowthForm = ({onFormSubmit}) => {
                             {/*    barInnerColor={'lightblue'}*/}
                             {/*/>*/}
 
-                            <button
-                                disabled={!(formik.isValid && formik.dirty)}
-                                type={"submit"}
-                                onClick={formik.handleSubmit}>Submit</button>
+                            <SubmitButton formik={formik} />
                         </div>
                     )
                 }

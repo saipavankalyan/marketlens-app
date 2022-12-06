@@ -6,6 +6,7 @@
   justify-content: start;
   align-items: center;
   background: $panel-color;
+  height: 100%;
 
   .panelItem {
     width: 225px;
@@ -22,7 +23,7 @@
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
-    font-family: DM Sans, serif;
+    //font-family: DM Sans, serif;
   }
 
   .activePanelItem {

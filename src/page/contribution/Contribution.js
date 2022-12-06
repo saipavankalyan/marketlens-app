@@ -52,14 +52,15 @@ const ContributionPage = () => {
             {!loading && initiated && (
                 <div className={classes.graphContainer}>
                     <AreaChart data={data} {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
-                        <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: "Cumulative M. Cap in Billions"}} />
+                        <CartesianGrid strokeDasharray="3 3" stroke={"#9e9e9e"} />
+                        <XAxis strokeWidth={2} fontWeight={'bold'} label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
+                        <YAxis strokeWidth={2} fontWeight={'bold'} tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: "Cumulative M. Cap in Billions"}} />
                         <Tooltip formatter={formatBillions} />
                         <Legend align={"right"} verticalAlign={"top"} layout={"vertical"}/>
                         {symbols.map((symbol, _idx) => <Area
                             dataKey={symbol}
                             fillOpacity={0.25}
+                            strokeWidth={2}
                             fill={colors[_idx % colors.length]}
                             stackId={1}
                             stroke={colors[_idx % colors.length]}

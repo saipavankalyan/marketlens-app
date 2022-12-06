@@ -4,6 +4,7 @@ import * as yup from "yup";
 import DropDownSelect from "../component/form/DropdownSelect";
 import {useQuery} from "react-query";
 import {getAllNewsEvents} from "../service/newsInflluence/NewsInfluenceService";
+import SubmitButton from "../component/form/SubmitButton";
 
 const NewsInfluenceForm = ({onFormSubmit}) => {
 
@@ -41,10 +42,7 @@ const NewsInfluenceForm = ({onFormSubmit}) => {
 
                             <DropDownSelect name={"event"} options={eventOptions} />
 
-                            <button
-                                disabled={!(formik.isValid && formik.dirty)}
-                                type={"submit"}
-                                onClick={formik.handleSubmit}>Submit</button>
+                            <SubmitButton formik={formik} />
                         </div>
                     )
                 }

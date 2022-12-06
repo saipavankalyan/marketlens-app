@@ -40,13 +40,14 @@ const GrowthPage = () => {
             {!loading && initiated && (
                 <div className={classes.graphContainer}>
                     <LineChart data={data} {...SINGLE_GRAPH_DISPLAY_PROPERTIES}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'}/>
-                        <YAxis label={{...YLABEL_PROPERTIES, value: 'Incremental Growth of Growth Rate'}}
+                        <CartesianGrid strokeDasharray="3 3" stroke={"#9e9e9e"}/>
+                        <XAxis strokeWidth={2} fontWeight={'bold'} label={XLABEL_PROPERTIES} dataKey={'xAxis'}/>
+                        <YAxis strokeWidth={2} fontWeight={'bold'} label={{...YLABEL_PROPERTIES, value: 'Incremental Growth of Growth Rate'}}
                                tickFormatter={tickFormatter}/>
                         <Tooltip formatter={tooltipFormatter}/>
                         <Legend layout={"vertical"} align={"right"} verticalAlign={"top"}/>
                         {symbols.map((symbol, _idx) => <Line dataKey={symbol} stroke={colors[_idx]}
+                                                             strokeWidth={2}
                                                              type={'monotone'}/>)}
                     </LineChart>
                 </div>

@@ -53,15 +53,16 @@ const EconInfluencePage = () => {
                 <div className={classes.graphContainer}>
                     <ComposedChart width={1200} height={500} data={data}
                                margin={{top: 20, right: 20, left: 80, bottom: 20}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
-                        <YAxis tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: 'Growth as percentage'}} />
+                        <CartesianGrid strokeDasharray="3 3" stroke={"#9e9e9e"}/>
+                        <XAxis strokeWidth={2} fontWeight={'bold'} label={XLABEL_PROPERTIES} dataKey={'xAxis'} />
+                        <YAxis strokeWidth={2} fontWeight={'bold'} tickFormatter={tickFormatter} label={{...YLABEL_PROPERTIES, value: 'Growth as percentage'}} />
                         <Tooltip formatter={toolTipFormatter}/>
                         <Legend wrapperStyle={{paddingLeft: "10px"}} verticalAlign={"top"}  align={"right"} layout={"vertical"}/>
                         {
                             sectorSymbols.map(
                                 (symbol, _idx) => <Line
                                     dataKey={symbol}
+                                    strokeWidth={2}
                                     stroke={colors[_idx % colors.length]}
                                     type={'monotone'}
                                 />
@@ -71,6 +72,7 @@ const EconInfluencePage = () => {
                             indicatorSymbols.map(
                                 (symbol, _idx) => <Area
                                     dataKey={symbol}
+                                    strokeWidth={2}
                                     fillOpacity={0.25}
                                     fill={colors[(sectorSymbols.length + _idx) % colors.length]}
                                     stroke={colors[(sectorSymbols.length + _idx) % colors.length]}

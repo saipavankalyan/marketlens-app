@@ -3,11 +3,11 @@ import {NavLink} from "react-router-dom";
 import clsx from "clsx";
 
 const URL_DISPLAY_MAPPING = {
+    "News Influence": '/news-influence',
+    "Risk Reward": '/risk-reward',
+    "Econ Influence": '/econ-influence',
     Growth: '/growth',
     Contribution: '/contribution',
-    "News Influence": '/news-influence',
-    "Econ Influence": '/econ-influence',
-    "Risk Reward": '/risk-reward',
     "Tuple Counts": '/tuple-counts'
 }
 
